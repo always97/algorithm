@@ -1,2 +1,7 @@
 # algorithm
-코딩테스트 대비 알고리즘 문제풀이
+프로그래머스 , 백준 온라인 저지 문제풀이 입니다.
+
+● 사용언어: javascript, C++
+
+[![Solved.ac프로필](http://mazassumnida.wtf/api/v2/generate_badge?boj=alwwwwways)](https://solved.ac/alwwwwwys)
+- ✨ 백준온라인저지 프로필
