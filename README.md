@@ -6,4 +6,4 @@
 [![Solved.ac프로필](http://mazassumnida.wtf/api/v2/generate_badge?boj=alwwwwways)](https://solved.ac/alwwwwwys)
 - ✨ 백준온라인저지 프로필
 
-[문제 풀이 블로그](https://alwwwwways.tistory.com/)
+[문제 풀이 해설 기록 블로그](https://alwwwwways.tistory.com/)
