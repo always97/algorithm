@@ -1,30 +1,35 @@
 const fs = require('fs');
 const filePath = process.platform === 'linux' ? '/dev/stdin' : '../input.txt';
-const input = fs.readFileSync(filePath).toString().split('\r\n');
+const input = fs.readFileSync(filePath).toString().split('\n').map(i => parseInt(i));
 
-console.log(input);
-let select = new Array(10).fill(0);
-// let answer = new Array(7).fill(0);
+const sum = input.reduce((acc,cur)=>{
+  return acc+cur*1;
+},0); 
 
-let result =[];
-let sum = 0;
-function rec(idx,n) {
-  if(n == idx) {
-    for(let i = 0; i<n; i++) {
-      if(select[i] == 1){
-        result.push(input[i]*1)
-        sum += input[i]*1;
-      }
-    }
-    if(sum== 100) {
-      console.log(result);
+let gap = Math.abs(100 - sum);
+
+let result1, result2;
+for(let i = 0; i<8; i++) {
+  for(let j=i+1; j<9; j++) {
+    if(input[i]+input[j] == gap) {
+      result1 = input.filter((v)=> v != input[i]);
+      result2 = result1.filter((v)=> v != input[j]);
+      break;
     }
   }
-  select[idx] = 0;
-  rec(idx+1,n);
-  select[idx] = 1;
-  rec(idx+1,n);
-  
 }
+result2.sort((a,b)=> a-b).map((v)=>console.log(v));
 
-rec(0,7);
+let nums = require("fs").readFileSync("/dev/stdin").toString().trim().split("\n").map(i => parseInt(i));
+let arr;
+for (let i=0; i<8; i++) {
+    for (let j=i+1; j<9; j++) {
+        if (nums.reduce((sum, item) => sum + item, 0) - 100 === nums[i] + nums[j] ) {
+            arr = nums.filter(item => item !== nums[i] && item !== nums[j]);
+            break;
+        }
+    }
+    if (arr) break; 
+}
+arr.sort((a, b) => a - b);
+for(let i=0; i<7; i++) console.log(arr[i]);
