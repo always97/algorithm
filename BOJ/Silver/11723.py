@@ -1,9 +1,11 @@
+import sys
+
 n = int(input())
 
 arr = set()
 
 for i in range(n) :
-  com_input = input().split()
+  com_input = sys.stdin.readline().strip().split()
 
   if len(com_input) == 1 :
     if com_input[0] == 'all' :
