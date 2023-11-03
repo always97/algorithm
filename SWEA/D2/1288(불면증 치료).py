@@ -6,7 +6,7 @@ for i in range(1,n+1) :
   idx = 1
   while len(seeNum) < 10 :
     nowNum = str(int(startNum) * idx)
-    for see in startNum :
+    for see in nowNum :
       seeNum.add(see)
-  
-  print(f'#{i} {idx}')
+    idx +=1
+  print(f'#{i} {nowNum}')
