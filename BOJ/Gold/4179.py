@@ -1,3 +1,4 @@
+from collections import deque
 R,C = map(int,input().split())
 
 board = []
@@ -9,8 +10,8 @@ for _ in range(R) :
 
 dx = [0,0,-1,1]
 dy = [1,-1,0,0]
-q1= []
-q2= []
+q1= deque()
+q2= deque()
 
 for i in range(R) :
   for j in range(C) :
@@ -23,26 +24,27 @@ for i in range(R) :
 
 # 불 
 while q2 : 
-  x,y = q2.pop(0)
+  cur = q2.popleft()
   for dir in range(4) :
-    nx = x + dx[dir]
-    ny = y + dy[dir]
+    nx = cur[0] + dx[dir]
+    ny = cur[1] + dy[dir]
     if 0>nx or nx>=R or 0>ny or ny>=C : continue
     if board[nx][ny] == '#' or fdist[nx][ny] >=0 : continue
-    fdist[nx][ny] = fdist[x][y] +1
-    q2.append([nx,ny])
+    fdist[nx][ny] = fdist[cur[0]][cur[1]] +1
+    q2.append((nx,ny))
 
 # 지훈
 while q1 : 
-  x,y = q1.pop(0)
+  cur = q1.popleft()
   for dir in range(4) :
-    nx = x + dx[dir]
-    ny = y + dy[dir]
-    if 0>nx or nx>=R or 0>ny or ny>=C : 
-      print(hdist[x][y]+1)
-    if fdist[nx][ny] >= 0 or board[nx][ny] == '#' : continue
-    if hdist[nx][ny] != -1 and fdist[nx][ny] <= hdist[x][y]+1 : continue
-    hdist[nx][ny] = hdist[x][y] +1
-    q1.append([nx,ny])
+    nx = cur[0] + dx[dir]
+    ny = cur[1] + dy[dir]
+    if nx<0 or nx>=R or ny<0 or ny>=C :
+      print(hdist[cur[0]][cur[1]] + 1)
+      exit(0)
+    if hdist[nx][ny] >= 0 or board[nx][ny] == "#" : continue
+    if fdist[nx][ny] != -1 and fdist[nx][ny] <= hdist[cur[0]][cur[1]]+1 : continue
+    hdist[nx][ny] = hdist[cur[0]][cur[1]] +1
+    q1.append((nx,ny))
 
 print("IMPOSSIBLE")
